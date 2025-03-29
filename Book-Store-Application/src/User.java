@@ -27,5 +27,5 @@ public class User {
 
 	public abstract void login();
 
-	public abstract voidw logout();
+	public abstract void logout();
 }
