@@ -5,8 +5,31 @@
 
 /**
  *
- * @author Hassan
+ * @author Khalid Guled
  */
 public class Owner {
-    
+    public Owner() {
+        super("admin", "admin");
+    }
+
+    public void addBook(BookStore store, Book b) {
+        store.addBook(b);
+    }
+
+    public void deleteBook(BookStore store, Book b) {
+        store.deleteBook(b);
+    }
+
+    public void addCustomer(BookStore store, Customer c) {
+        store.addCustomer(c);
+    }
+
+    public void deleteCustomer(BookStore store, Customer c) {
+        store.deleteCustomer(c);
+    }
+
+    @Override
+    public boolean login() {
+        return getUsername().equals("admin") && getPassword().equals("admin");
+    } 
 }
