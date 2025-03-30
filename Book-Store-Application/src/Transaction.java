@@ -12,11 +12,22 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import java.util.List;
 
+/**
+ * Represents a transaction in the bookstore system.
+ * Handles the purchase of books, calculates costs, and manages reward points.
+ */
 public class Transaction {
-    private Customer customer;
-    private List<Book> books;
-    private double totalCost;
+    // Core transaction components
+    private Customer customer; // Customer making the purchase
+    private List<Book> books; // Books being purchased
+    private double totalCost; // Total cost of the transaction
 
+    /**
+     * Creates a new transaction and processes it immediately.
+     * 
+     * @param customer The customer making the purchase
+     * @param books    List of books being purchased
+     */
     public Transaction(Customer customer, List<Book> books) {
         this.customer = customer;
         this.books = books;
@@ -25,6 +36,10 @@ public class Transaction {
         showAlert("Transaction Complete", "Transaction completed successfully! Total cost: $" + totalCost);
     }
 
+    /**
+     * Calculates the total cost of all books in the transaction.
+     * Sums up individual book prices to get the final cost.
+     */
     private void calculateTotalCost() {
         totalCost = 0;
         for (Book book : books) {
@@ -32,12 +47,22 @@ public class Transaction {
         }
     }
 
+    /**
+     * Updates the customer's reward points based on purchase amount.
+     * Awards 10 points per dollar spent.
+     */
     private void updateCustomerPoints() {
         int earnedPoints = (int) (totalCost * 10); // 10 points per dollar
         customer.addPoints(earnedPoints);
         showAlert("Points Earned", "You earned " + earnedPoints + " points!");
     }
 
+    /**
+     * Handles the redemption of customer points for purchase discounts.
+     * Converts points to monetary value (100 points = $1)
+     * 
+     * @return Updated total cost after point redemption
+     */
     public double redeemPoints() {
         int redeemablePoints = customer.getPoints() / 100; // 100 points = $1 discount
         double discount = Math.min(redeemablePoints, totalCost);
@@ -47,6 +72,12 @@ public class Transaction {
         return totalCost;
     }
 
+    /**
+     * Displays an information alert to the user.
+     * 
+     * @param title   The alert window title
+     * @param message The message to display
+     */
     private void showAlert(String title, String message) {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle(title);
@@ -55,6 +86,11 @@ public class Transaction {
         alert.showAndWait();
     }
 
+    /**
+     * Returns the total cost of the transaction.
+     * 
+     * @return Current total cost
+     */
     public double getTotalCost() {
         return totalCost;
     }
