@@ -1,3 +1,6 @@
+/*
+ * @Author: Hassan
+ */
 public class Book {
 
 	private String title;
@@ -11,5 +14,9 @@ public class Book {
 	public String getDetails() {
 		String str = String.format("Title: %s\nPrice: $%.2f", title, price);
 		return str;
+	}
+
+	public double getPrice() {
+		return price;
 	}
 }
