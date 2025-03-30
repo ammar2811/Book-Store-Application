@@ -18,57 +18,62 @@ import java.io.FileNotFoundException;
 
 /**
  * 
- * Represents a Book store where all book and customer data is stored. could add or remove book/customer
+ * Represents a Book store where books and customer data is managed
+ * The bookstore allows adding/removing books and customers
+ * Along with storing and loading data from text files
  * 
  */
 public class BookStore {
     private List<Book> bookList = new ArrayList<>();
     private List<Customer> customerList = new ArrayList<>();
     /**
-     * 
-     * @return arrayList containing book data
+     * Retrieves a list of books available in the bookstore
+     * @return A list of books
      */
     public List<Book> getBooks(){
         return bookList;
     }
     /**
-     * 
-     * @return arrayList containing customer data
+     * Retrieves a list of customers registered in the bookstore
+     * @return A list of customer data
      */
     public List<Customer> getCustomers(){
         return customerList;
     }
     /**
-     * Adds a book to the BookList array
-     * @param b Book 
+     * Adds a book to the bookstore
+     * @param b Book to be added
      */
     public void addBook(Book b) {
         bookList.add(b);
     }
     /**
-     * Deletes a book from the BookList array
-     * @param b Book
-     * @return true if book was deleted from arrayList. returns false if book was not deleted.
+     * Deletes a book from the bookstore
+     * @param b Book to be deleted
+     * @return true if book was removed from the store. returns false otherwise.
      */
     public boolean deleteBook(Book b) {
         return bookList.remove(b);
     }
     /**
-     * Adds a customer to the CustomerList array
-     * @param c Customer
+     * Adds a customer to the bookstore
+     * @param c Customer to be added
      */
     public void addCustomer(Customer c) {
         customerList.add(c);
     }
      /**
-     * Deletes a customer from the CustomerList array
-     * @param c Customer
-     * @return true if customer was deleted from arrayList. returns false if customer was not deleted.
+     * Deletes a customer from the bookstore
+     * @param c Customer to be removed
+     * @return true if customer was removed from the store. false otherwise.
      */
     public boolean deleteCustomer(Customer c) {
         return customerList.remove(c);
     }
-    
+    /**
+     * Stores the list of books into a text file called books.txt
+     * Book details are stored on separated lines.
+     */
     public void StoreBooks(){
         File bookstext = new File("books.txt");
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(bookstext,false))){
@@ -81,7 +86,10 @@ public class BookStore {
             e.printStackTrace();
         } 
     }
-    
+    /**
+     * Stores the list of registered customers into a text file called customer.txt
+     * Customer details are stored on separated lines.
+     */
     public void StoreCustomers(){
         File customerstext = new File("customers.txt");
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(customerstext,false))){
@@ -95,8 +103,8 @@ public class BookStore {
         } 
     }
    /**
-    * Copies the book data stored in books.txt and places it inside of the bookList Array.
-    * needed to convert string data into book data type
+    * Loads books from books.txt and adds them to the bookstore's book list
+    * converts text data into book objects and adds them to the list
     */
     public void loadBooks(){
         File bookstext = new File("books.txt");
@@ -133,8 +141,8 @@ public class BookStore {
     }
     
     /**
-    * Copies the customer's data stored in customer.txt and places it inside of the customerList Array.
-    * needed to convert string data into customer data type
+    * Loads customers from customers.txt and adds them to the bookstore's registered customer list
+    * converts text data into customer objects and adds them to the list
     */
     public void loadCustomers(){
         File customerstext = new File("customers.txt");
