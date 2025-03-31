@@ -20,9 +20,7 @@ A comprehensive bookstore application with a clean and intuitive User Interface.
 
 ## Technology Stack
 - **Backend:** Java
-- **Frontend:** [Specify the frontend technologies used, e.g., HTML, CSS, JavaScript, React, etc.]
-- **Database:** [Specify the database used, e.g., MySQL, PostgreSQL, etc.]
-- **Authentication:** [Specify the authentication mechanism, e.g., OAuth, JWT, etc.]
+- **Frontend:** JavaFX
 
 ## Installation
 
