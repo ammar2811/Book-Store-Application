@@ -79,9 +79,9 @@ public class Customer extends User {
      * 
      * @param books List of books to purchase
      */
-    public void buyBook(List<Book> books) {
-        Transaction transaction = new Transaction(this, books, true);
+    public void buyBook(Transaction transaction) {
         transactions.add(transaction);
+        updateStatus();
     }
 
     /**

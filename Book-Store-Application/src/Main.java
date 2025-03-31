@@ -313,7 +313,7 @@ public class Main extends Application {
 
         if (usePoints) {
             finalTotal = customer.redeemPoints(transaction); // Points get consumed
-        }
+        } 
 
         // Don't add points here manually
         //customer.buyBook(purchasedBooks); // Let this internally handle the transaction & points
