@@ -8,8 +8,6 @@
  * @author Ammar
  */
 
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,10 +29,9 @@ public class Customer extends User {
      */
     public Customer(String username, String password, int points) {
         super(username, password);
-        this.points = 0;
+        this.points = points;
         this.status = "Silver";
         this.transactions = new ArrayList<>();
-        this.points = points;
     }
 
     /**
@@ -64,14 +61,17 @@ public class Customer extends User {
         this.points = Math.max(this.points - points, 0);
         updateStatus();
     }
-
+    
+    public String getStatus(){
+        return status;
+    }
     /**
      * Updates customer status based on points.
      * Gold status requires 1000+ points.
      */
     private void updateStatus() {
         this.status = (points >= 1000) ? "Gold" : "Silver";
-        showAlert("Status Update", "Your status is now: " + status);
+        //showAlert("Status Update", "Your status is now: " + status);
     }
 
     /**
@@ -80,7 +80,7 @@ public class Customer extends User {
      * @param books List of books to purchase
      */
     public void buyBook(List<Book> books) {
-        Transaction transaction = new Transaction(this, books);
+        Transaction transaction = new Transaction(this, books, true);
         transactions.add(transaction);
     }
 
@@ -100,12 +100,24 @@ public class Customer extends User {
      * @param title   The alert window title
      * @param message The message to display
      */
-    private void showAlert(String title, String message) {
+    /*private void showAlert(String title, String message) {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
+    }*/
+ 
+    @Override
+    public boolean login() {
+        // TODO: Change this to actually work for customers not admins.
+        return getUsername().equals("admin") && getPassword().equals("admin");
+    }
+
+    @Override
+    public boolean logout() {
+        System.out.println("Customer " + getUsername() + "has logged out");
+        return true;
     }
 
     @Override

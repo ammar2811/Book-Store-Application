@@ -1,16 +1,15 @@
+
 /*
  * @Author: Hassan
  */
 
-public class User {
+public abstract class User {
 	private String username;
 	private String password;
-	private boolean isLoggedIn;
 
 	public User(String username, String password) {
 		setUsername(username);
 		this.password = password;
-		isLoggedIn = false;
 	}
 
 	public String getUsername() {
@@ -29,7 +28,7 @@ public class User {
 		this.password = password;
 	}
 
-	public abstract void login();
+	public abstract boolean login();
 
-	public abstract void logout();
+	public abstract boolean logout();
 }

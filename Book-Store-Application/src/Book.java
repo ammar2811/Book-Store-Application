@@ -12,8 +12,12 @@ public class Book {
 	}
 
 	public String getDetails() {
-		String str = String.format("Title: %s\nPrice: $%.2f", title, price);
+		String str = String.format("%s,%.2f", title, price);
 		return str;
+	}
+
+	public String getTitle() {
+		return title;
 	}
 
 	public double getPrice() {

@@ -8,8 +8,6 @@
  * @author Ammar
  */
 
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
 import java.util.List;
 
 /**
@@ -28,13 +26,16 @@ public class Transaction {
      * @param customer The customer making the purchase
      * @param books    List of books being purchased
      */
-    public Transaction(Customer customer, List<Book> books) {
-        this.customer = customer;
-        this.books = books;
-        calculateTotalCost();
+    public Transaction(Customer customer, List<Book> books, boolean earnPoints) {
+    this.customer = customer;
+    this.books = books;
+    calculateTotalCost();
+
+    if (earnPoints) {
         updateCustomerPoints();
-        showAlert("Transaction Complete", "Transaction completed successfully! Total cost: $" + totalCost);
     }
+}
+
 
     /**
      * Calculates the total cost of all books in the transaction.
@@ -54,7 +55,7 @@ public class Transaction {
     private void updateCustomerPoints() {
         int earnedPoints = (int) (totalCost * 10); // 10 points per dollar
         customer.addPoints(earnedPoints);
-        showAlert("Points Earned", "You earned " + earnedPoints + " points!");
+        //showAlert("Points Earned", "You earned " + earnedPoints + " points!");
     }
 
     /**
@@ -68,7 +69,7 @@ public class Transaction {
         double discount = Math.min(redeemablePoints, totalCost);
         totalCost -= discount;
         customer.deductPoints((int) (discount * 100));
-        showAlert("Points Redeemed", "You redeemed " + (int) (discount * 100) + " points! New total: $" + totalCost);
+        //showAlert("Points Redeemed", "You redeemed " + (int) (discount * 100) + " points! New total: $" + totalCost);
         return totalCost;
     }
 
@@ -78,13 +79,13 @@ public class Transaction {
      * @param title   The alert window title
      * @param message The message to display
      */
-    private void showAlert(String title, String message) {
+    /*private void showAlert(String title, String message) {
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();
-    }
+    }*/
 
     /**
      * Returns the total cost of the transaction.
